@@ -8,7 +8,7 @@ import { Login } from './components/LoginForm/LoginForm';
 import { Register } from './components/Register/Register';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import { AuthProvider } from './context/AuthContext';
-// import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
+import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 
 function App() {
   return (
@@ -27,9 +27,9 @@ function App() {
                 <Route path="/register" element={<Register />} />
 
                 {/* Tikriname ar zmous gali patekti i dashboarda */}
-                {/* <Route element={<ProtectedRoute />}> */}
-                <Route path="/dashboard" element={<Dashboard />} />
-                {/* </Route> */}
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                </Route>
               </Routes>
             </main>
           </div>

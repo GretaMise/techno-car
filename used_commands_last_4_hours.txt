@@ -1,0 +1,15 @@
+# Terminal commands used in the past 4 hours (from all terminals):
+
+1  git remote remove origin
+2  rm -rf .git && git init && git add . && git commit -m "Initial commit" && git remote add origin git@github.com:GretaMise/techno-car.git && git push -u origin master
+3  git branch -M main && git push -u origin main
+4  git init
+5  sudo git add .
+6  git branch -M main && git push -u origin main
+7  git branch -M main && git push -u origin main
+8  git init
+9  git add .
+10  sudo git commit -m "add updates"
+11  sudo git push -u origin main
+12  git branch -M main && git push -u origin main
+13  history | tail -n 100

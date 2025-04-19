@@ -20,10 +20,7 @@ function App() {
             <main className="main-content">
               <Routes>
                 <Route path="/" element={<CarList />} />
-                <Route
-                  path="/cars/:id"
-                  element={<CarDetails carr={undefined} />}
-                />
+                <Route path="/cars/:id" element={<CarDetails />} />
                 <Route path="/reviews" element={<ReviewPage />} />
                 {/* <Route path="/reviews" element={<ReviewCard />} /> */}
                 <Route path="/login" element={<Login />} />

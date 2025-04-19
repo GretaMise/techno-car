@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './review-page.css';
-import axios from 'axios';
 import { Review } from '../../types/types';
 import { ReviewCard } from '../ReviewCard/ReviewCard';
 import { ReviewModal } from '../ReviewModal/ReviewModal';
@@ -35,7 +35,7 @@ export const ReviewPage = () => {
       </div>
       <div className="review-page">
         {reviews.map((review) => (
-          <ReviewCard key={review.id} review={review} />
+          <ReviewCard key={review._id} review={review} />
         ))}
       </div>
       {isModalVisible && (

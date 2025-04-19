@@ -2,20 +2,22 @@ import { useState, useEffect } from 'react';
 import './car-list.css';
 import axios from 'axios';
 import { CarCard } from '../CarCard/CarCard';
+import { Car } from '../../types/types';
+import { URL } from '../../constants/globalConstants';
 
-interface Car {
-  _id: number;
-  make: string;
-  model: string;
-  description: string;
-  price: number;
-  features: string[];
-  transmission: string;
-  fuelType: string;
-  seats: number;
-  year: number;
-  image: string;
-}
+// interface Car {
+//   _id: number;
+//   make: string;
+//   model: string;
+//   description: string;
+//   price: number;
+//   features: string[];
+//   transmission: string;
+//   fuelType: string;
+//   seats: number;
+//   year: number;
+//   image: string;
+// }
 
 export const CarList = () => {
   const [cars, setCars] = useState<Car[]>([]);
@@ -23,7 +25,7 @@ export const CarList = () => {
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const response = await axios.get('http://localhost:3003/api/cars');
+        const response = await axios.get(`${URL}/cars`);
         setCars(response.data);
       } catch (error) {
         console.error(error);
@@ -53,5 +55,3 @@ export const CarList = () => {
     </>
   );
 };
-
-export default CarList;

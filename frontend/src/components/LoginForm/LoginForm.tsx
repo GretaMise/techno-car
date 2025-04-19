@@ -9,7 +9,7 @@ export const Login = () => {
 
   const { login } = useContext(AuthContext);
 
-  const handleSubmit = async  (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     await login(email, password);

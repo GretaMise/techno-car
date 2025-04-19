@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import './review-modal.css';
+import { URL } from '../../constants/globalConstants';
 
 interface ReviewModalProps {
   onModalClose: () => void;
@@ -11,22 +12,23 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
   onModalClose,
   onSuccess,
 }) => {
-  const [name, setName] = useState('');
-  const [comment, setComment] = useState('');
-  const [rating, setRating] = useState('');
-  const [error, setError] = useState('');
+  const [name, setName] = useState<string>('');
+  const [comment, setComment] = useState<string>('');
+  const [rating, setRating] = useState<number | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event?.preventDefault();
 
     try {
-      await axios.post('https://localhost:3003/api/reviews', {
+      await axios.post(`${URL}/reviews`, {
         name,
         comment,
-        rating: Number(rating),
+        rating,
       });
       onModalClose();
       onSuccess();
+      setError(null);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const errorMessage = error.response?.data?.error || 'Ivyko klaida';
@@ -35,15 +37,14 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
       }
     }
   };
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">
         <h2>Palikite atsiliepima</h2>
-        {/* {' '} */}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Vardas ir Pavarde</label>
-
             <input
               type="text"
               id="name"
@@ -68,7 +69,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
               type="number"
               id="rating"
               placeholder="nuo 1 iki 5"
-              onChange={(event) => setRating(event.target.value)}
+              onChange={(event) => setRating(Number(event.target.value))}
               required
             />
           </div>

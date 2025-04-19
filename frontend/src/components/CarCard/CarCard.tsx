@@ -7,7 +7,7 @@ interface CarProps {
   car: Car;
 }
 
-import { URL } from '../../constants/globalConstants';
+// import { URL } from '../../constants/globalConstants';
 
 export const CarCard = ({ car }: CarProps) => {
   const naviguotiPuslapiuose = useNavigate();
@@ -16,18 +16,11 @@ export const CarCard = ({ car }: CarProps) => {
     naviguotiPuslapiuose(`/cars/${car._id}`);
   };
 
-  // Check if image path is relative and prepend backend base URL if needed
-  const imageUrl = car.image.startsWith('http')
-    ? car.image
-    : `${URL}/${car.image}`;
+  // const imageUrl = car.image ? car.image : `${URL}/${car.image}`;
 
   return (
     <div className="car-card" onClick={handleClick}>
-      <img
-        src={imageUrl}
-        alt={`${car.make} ${car.model}`}
-        className="car-card-image"
-      />
+      <img src={car.image} alt="Car" className="car-card-image" />
       <div className="car-card-content">
         <h3>
           {car.make} {car.model}

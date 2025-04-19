@@ -1,0 +1,22 @@
+create update ir delete pasidaryti
+
+is id pasifetchint informacija, issisaugot i constanta: 
+Darom etapais.
+
+Etapas- pasidarom kad fetchintu duomenis ir juo bent pamatytume su console.log
+Fetchintus duomenis atvaizduojame HTML’
+
+
+užduotys:
+
+Frontend
+1. Reikia sukurti  ir  komponentus, duoti abiems stilius (stiliu laikyti panašų koki jau turime).
+2. ReviewPage - Atsakingas už duomenų gavimą iš API, perduoda informacija į ReviewCard.tsx
+3. ReviewCard - Atsakingas už vieno atsiliepimo atvaizdavimą.
+
+Backend
+1. Reikia sukurti naujus failus: reviews.json, reviewController, reviewModel ir reviewRoutes.
+2. reviews.json - Masyvas duomenų su objektais viduje, kiekvienas objektas turi id, name, description.
+
+
+Pridėdam papildomų laukelių į reviews kortelę, nuotrauka žmogaus bei datą kada Parašytas reviewsas, pasitvarkom stiliukus.

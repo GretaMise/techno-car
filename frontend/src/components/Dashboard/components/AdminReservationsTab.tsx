@@ -1,10 +1,11 @@
-import { Reservation } from '../../../types/types';
+// import { Reservation } from '../../../types/types';
 
 // interface ReservationItemProps {
 //   reservation: Reservation;
 //   onDelete: (id: string) => void;
 //   isDeleting: boolean;
 // }
+// can you push everything to github?
 
 export const AdminsReservationsTab = () => {
   return (

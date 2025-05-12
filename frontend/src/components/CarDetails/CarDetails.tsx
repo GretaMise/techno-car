@@ -1,9 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import './car-details.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Car } from '../../types/types';
 import { URL } from '../../constants/globalConstants';
+import { AuthContext } from '../../context/AuthContext';
+import { ReservationModal } from '../ReservationModal/ReservationModal';
 
 export const CarDetails = () => {
   const navigate = useNavigate();
@@ -11,14 +13,18 @@ export const CarDetails = () => {
 
   // useParams() - yra hook, kuris naudojamas gauti URL parametrus, pvz. id = :id, name => :name
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
+  const [isReservationModalVisible, setIsReservationModalVisible] =
+    useState(false);
 
   useEffect(() => {
     const fetchCar = async () => {
-      const response = await axios.get(`${URL}/cars/${id}`);
-      setCar(response.data);
-      //  catch (error) {
-      //   console.error(error);
-      // }
+      try {
+        const response = await axios.get(`${URL}/cars/${id}`);
+        setCar(response.data);
+      } catch (error) {
+        console.error('CarDetails 26th. ');
+      }
     };
 
     fetchCar();
@@ -29,12 +35,14 @@ export const CarDetails = () => {
     navigate('/');
   };
 
-  // if (!car) {
-  //   return <div>Loading...</div>;
-  // }
+  const handleReserveClick = () => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+    setIsReservationModalVisible(true);
+  };
 
-  //   const response = await fetch(`${port}/${carId}`);
-  //   const data = await response.json();
   return (
     <div className="car-detail">
       <div className="car-detail-container">
@@ -62,7 +70,7 @@ export const CarDetails = () => {
             </div>
             <div className="spec-item">
               <span className="spec-label">Kuro tipas: </span>
-              <span className="spec-value">{car?.fuelType}</span>
+              <span className="spec-value">{car?.fuel}</span>
             </div>
             <div className="spec-item">
               <span className="spec-label">Sedimu vietu skaicius: </span>
@@ -74,7 +82,12 @@ export const CarDetails = () => {
             </div>
           </div>
           <div className="car-actions">
-            <button className="button button-primary">Rezervuoti</button>
+            <button
+              className="button button-primary"
+              onClick={handleReserveClick}
+            >
+              Rezervuoti
+            </button>
             <button
               className="button button-secondary"
               onClick={handleBackClick}
@@ -84,6 +97,12 @@ export const CarDetails = () => {
           </div>
         </div>
       </div>
+      {isReservationModalVisible && car && (
+        <ReservationModal
+          onModalClose={() => setIsReservationModalVisible(false)}
+          car={car}
+        />
+      )}
     </div>
   );
 };

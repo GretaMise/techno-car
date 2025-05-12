@@ -12,8 +12,8 @@ exports.register = async (req, res) => {
 
     // 2. patikriname ar email egzituoja musu duomenu bazeje
     const existingUser = await User.findOne({ email });
-    if (!existingUser) {
-      return res.status(400).json({ error: 'Invalid credentials' });
+    if (existingUser) {
+      return res.status(400).json({ error: 'asdfghjkl' });
     }
 
     // 3. Sukuriame nauja vartotoja
@@ -87,23 +87,7 @@ exports.login = async (req, res) => {
 
 exports.getCurrentUser = async (req, res) => {
   try {
-    // 1. issitraukiam tokena is request headerio
-    const token = req.header('Authorization')?.replace('Bearer ', '');
-    // 2. tikriname ar tokenas egzistuoja
-    if (!token) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
-    // 3. tikriname ar tokenas yra validus (pvz. ar nepasibaiges galiojimas)
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    // 4. issitraukiam user'io duomenis is duomenu bazes
-    const user = await User.findById(decoded.userId).select('-password');
-
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    res.json(user);
+    res.json(req.user);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }

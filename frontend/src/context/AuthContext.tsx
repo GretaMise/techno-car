@@ -1,15 +1,8 @@
-// Auth Context - bus atsakingas uz zmogaus autentifikacija, laikys funkcijas bei state
 import { createContext, useState, useEffect, ReactNode } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../constants/globalConstants';
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-}
+import { User } from '../types/types';
 
 interface AuthContextType {
   user: User | null;

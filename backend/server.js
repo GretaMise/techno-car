@@ -5,9 +5,8 @@ const mongoose = require('mongoose');
 // susiimportuojame route is carRoutes failo
 const carRoutes = require('./routes/carRoutes');
 const reviewsRoutes = require('./routes/reviewsRoutes');
-const authRoutes = require('./routes/authRoutes')
-
-
+const authRoutes = require('./routes/authRoutes');
+const reservationRoutes = require('./routes/reservationRoutes');
 dotenv.config();
 
 const app = express();
@@ -22,7 +21,8 @@ app.use('/api/cars', carRoutes);
 // reviews api
 app.use('/api/reviews', reviewsRoutes);
 // autorizacijos route
-app.use('/api/auth', authRoutes)
+app.use('/api/auth', authRoutes);
+app.use('/api/reservations', reservationRoutes);
 
 const PORT = process.env.PORT || 3003;
 

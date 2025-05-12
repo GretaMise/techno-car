@@ -1,6 +1,7 @@
 const express = require('express');
 
 const carController = require('../controllers/carController');
+const authMiddleware = require('../middleware/authMiddleware');
 
 // Using express router to direct API requests to the appropriate controller
 const router = express.Router();
@@ -15,13 +16,13 @@ router.get('/:id', carController.getCarById);
 // module.exports = getCarById;
 
 // Update a car by ID
-router.put('/:id', carController.updateCar);
+router.patch('/:id', authMiddleware, carController.updateCar);
 
 // Create a new car
-router.post('/', carController.addNewCar);
+router.post('/', authMiddleware, carController.addNewCar);
 
 // Delete a car by ID
-router.delete('/:id', carController.deleteCar);
+router.delete('/:id', authMiddleware, carController.deleteCar);
 
 // Exporting this file for use in other modules
 module.exports = router;

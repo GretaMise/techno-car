@@ -13,8 +13,6 @@ exports.getReviews = async (req, res) => {
 // create
 exports.createReview = async (req, res) => {
   try {
-    // const newReview = new Review(req.body);
-    // await newReview.save();
     const { name, rating, comment } = req.body;
 
     // validacija 1
@@ -29,7 +27,8 @@ exports.createReview = async (req, res) => {
     // const newReview = new Review({ name, rating, comment });
     // await newReview.save();
 
-    Review.createReview({ name, rating, description });
+    const newReview = new Review({ name, rating, comment });
+    await newReview.save();
     res.status(201).json({ message: 'Review created successfully' });
   } catch (error) {
     res.status(500).json({ error: 'Error creating review' });

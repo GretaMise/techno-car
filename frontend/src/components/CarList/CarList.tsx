@@ -5,20 +5,6 @@ import { CarCard } from '../CarCard/CarCard';
 import { Car } from '../../types/types';
 import { URL } from '../../constants/globalConstants';
 
-// interface Car {
-//   _id: number;
-//   make: string;
-//   model: string;
-//   description: string;
-//   price: number;
-//   features: string[];
-//   transmission: string;
-//   fuelType: string;
-//   seats: number;
-//   year: number;
-//   image: string;
-// }
-
 export const CarList = () => {
   const [cars, setCars] = useState<Car[]>([]);
 

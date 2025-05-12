@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 export const Navigation = () => {
-  const { isAuthenticated, user, logout } = useContext(AuthContext);
+  const { isAuthenticated, logout } = useContext(AuthContext);
 
   return (
     <nav className="navigation">
@@ -30,11 +30,11 @@ export const Navigation = () => {
                   Logout
                 </button>
               </li>
-              {user?.role === 'admin' && (
+              {/* {user?.role === 'admin' && (
                 <li className="admin-item">
                   <Link to="/admin">Admin</Link>
                 </li>
-              )}
+              )} */}
             </>
           ) : (
             <>
